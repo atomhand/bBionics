@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<!--<success>Always</success>-->
+		<operations>
+			<!-- ==== Checking for the mod ==== -->
+			<li Class="PatchOperationFindMod">
+				<mods><li>Cybernetic Organism and Neural Network</li></mods>
+			</li>
+
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Trunken_hediff_EnergyLink"]/stages/li/statOffsets/EnergyShieldEnergyMax</xpath>
+				<value>
+                    <EnergyShieldEnergyMaxMultiplier>0.6</EnergyShieldEnergyMaxMultiplier>
+				</value>
+			</li>
+
+            <li Class="PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="Trunken_hediff_EnergyLink"]/stages/li/statOffsets/EnergyShieldRechargeRate</xpath>
+				<value>
+					 <EnergyShieldRechargeRateMultiplier>1.0</EnergyShieldRechargeRateMultiplier>
+				</value>
+			</li>
+        </operations>
+    </Operation>
+</Patch>
