@@ -61,7 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ShieldBelt.cs" />
+    <Compile Include="ShieldBeltUtility.cs" />
     <Compile Include="StatDefOf.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

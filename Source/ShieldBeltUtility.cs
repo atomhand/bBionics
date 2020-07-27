@@ -1,17 +1,11 @@
 ﻿using RimWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RimWorld;
 using Verse;
 
 namespace bBionics
 {
     static class ShieldBeltUtility
     {
-        public static float EnergyMax( ShieldBelt me, StatDef stat = null, bool b = false)
+        public static float EnergyMax( ShieldBelt me)
         {
             Pawn wearer = me.Wearer;
             float result = me.GetStatValue(StatDefOf.EnergyShieldEnergyMax, true);
@@ -29,6 +23,11 @@ namespace bBionics
                 result *= wearer.GetStatValueForPawn(BStatDefOf.EnergyShieldRechargeRateMultiplier, wearer);
 
             return result;
+        }
+
+        public static float FEnergyMax(ShieldBelt me, StatDef stat = null, bool b = false)
+        {
+            return EnergyMax(me);
         }
     }
 }

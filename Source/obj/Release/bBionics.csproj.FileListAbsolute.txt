@@ -1,0 +1,6 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\bBionics\Assemblies\bBionics.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\bBionics\Assemblies\bBionics.pdb
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\bBionics\Source\obj\Release\bBionics.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\bBionics\Source\obj\Release\bBionics.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\bBionics\Source\obj\Release\bBionics.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\bBionics\Source\obj\Release\bBionics.pdb
