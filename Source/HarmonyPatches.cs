@@ -19,18 +19,9 @@ namespace bBionics
 		}
 	}
 
-	// This is to access the base.Tick() call in ShieldBelt.Tick(). it's a pain but I believe the only way.
-	[HarmonyPatch]
-	public class Patch_ThingWithComps_Tick
-	{
-		[HarmonyReversePatch]
-		[HarmonyPatch(typeof(ThingWithComps), "Tick")]
-		public static void MyTick(object instance)
-		{
-			// its a stub so it has no initial content
-		}
-	}
+	// Replace all references to ShieldBlet's EnergyMax and EnergyGainPerTick with my getter functions
 
+	// Replace the getter instances in Tick
 	[HarmonyPatch(typeof(ShieldBelt), "Tick")]
 	static class Patch_ShieldBelt_Tick
 	{
@@ -50,6 +41,7 @@ namespace bBionics
 		}
 	}
 
+	// Replace the direct call to statdef in the energy shield gizmo
     [HarmonyPatch(typeof(Gizmo_EnergyShieldStatus), "GizmoOnGUI")]
     static class Patch_Gizmo_EnergyShieldStatus_GizmoOnGUI
     {
