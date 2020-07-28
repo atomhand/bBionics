@@ -2,7 +2,7 @@
 <Defs>
  <StatDef>
     <defName>EnergyShieldEnergyMaxMultiplier</defName>
-    <label>shield charge multiplier</label>
+    <label>shield max energy multiplier</label>
     <description>A multiplier on the maxium energy of any shield worn by the creature.</description>
     <category>PawnCombat</category>
     <defaultBaseValue>1.0</defaultBaseValue>
