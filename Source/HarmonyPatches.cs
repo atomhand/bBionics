@@ -2,6 +2,7 @@
 using RimWorld;
 using System;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Linq;
 using System.Collections.Generic;
 using Verse;
@@ -29,13 +30,13 @@ namespace bBionics
 		{
 			List<CodeInstruction> instructionList = instructions.ToList();
 
-			MethodInfo miold = AccessTools.Property(typeof(ShieldBelt), "EnergyMax").GetGetMethod(true);
-			MethodInfo minew = AccessTools.DeclaredMethod(typeof(ShieldBeltUtility), "EnergyMax");
-			instructionList = instructionList.MethodReplacer(miold, minew).ToList();
+			MethodInfo from = AccessTools.Property(typeof(ShieldBelt), "EnergyMax").GetGetMethod(true);
+			MethodInfo to = AccessTools.DeclaredMethod(typeof(ShieldBeltUtility), "EnergyMax");
+			instructionList = instructionList.MethodReplacer(from, to).ToList();
 
-			miold = AccessTools.Property(typeof(ShieldBelt), "EnergyGainPerTick").GetGetMethod(true);
-			minew = AccessTools.DeclaredMethod(typeof(ShieldBeltUtility), "EnergyGainPerTick");
-			instructionList = instructionList.MethodReplacer(miold, minew).ToList();
+			from = AccessTools.Property(typeof(ShieldBelt), "EnergyGainPerTick").GetGetMethod(true);
+			to = AccessTools.DeclaredMethod(typeof(ShieldBeltUtility), "EnergyGainPerTick");
+			instructionList = instructionList.MethodReplacer(from, to).ToList();
 
 			return instructionList;
 		}
@@ -49,9 +50,23 @@ namespace bBionics
 		{
 			List<CodeInstruction> instructionList = instructions.ToList();
 
-			MethodInfo miold = AccessTools.DeclaredMethod(typeof(StatExtension), "GetStatValue");
-			MethodInfo minew = AccessTools.DeclaredMethod(typeof(ShieldBeltUtility), "FEnergyMax");
-			instructionList = instructionList.MethodReplacer(miold, minew).ToList();
+			MethodInfo from = AccessTools.DeclaredMethod(typeof(StatExtension), "GetStatValue");
+			MethodInfo to = AccessTools.DeclaredMethod(typeof(ShieldBeltUtility), "EnergyMax");
+
+			// Find and replace the appropriate method call
+			// Trace back from there to remove 2 parameters that we are not using
+			for ( int i =0; i<instructionList.Count; i++)
+            {
+				var method = instructionList[i].operand as MethodBase;
+				if (method == from)
+				{
+					instructionList[i].opcode = to.IsConstructor ? OpCodes.Newobj : OpCodes.Call;
+					instructionList[i].operand = to;
+
+					instructionList.RemoveRange(i - 2, 2);
+					i -= 2;
+				}
+			}
 
 			return instructionList;
 		}

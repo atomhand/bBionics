@@ -24,11 +24,5 @@ namespace bBionics
 
             return result;
         }
-
-        // (I was too lazy to remove the unneeded parameters in the replaced Gizmo function)
-        public static float FEnergyMax(ShieldBelt shield, StatDef stat, bool b)
-        {
-            return EnergyMax(shield);
-        }
     }
 }
